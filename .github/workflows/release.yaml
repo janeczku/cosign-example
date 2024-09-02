@@ -33,7 +33,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/janeczku/cosign-example:${{ github.sha }},ghcr.io/janeczku/cosign-example:latest
+          tags: ghcr.io/janeczku/cosign-example:commit-${{ github.sha }},ghcr.io/janeczku/cosign-example:latest
       - name: Sign image with Github OIDC token
         run: |
           cosign sign --yes ghcr.io/janeczku/cosign-example:latest
