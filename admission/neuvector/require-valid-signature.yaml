@@ -1,0 +1,24 @@
+apiVersion: neuvector.com/v1
+kind: NvAdmissionControlSecurityRule
+metadata:
+  name: local
+spec:
+  config:
+    client_mode: service
+    enable: true
+    mode: protect
+  rules:
+  - action: deny
+    containers:
+    - containers
+    criteria:
+    - name: image
+      op: containsAny
+      path: image
+      value: https://ghcr.io/janeczku/*
+    - name: imageVerifiers
+      op: notContainsAny
+      path: imageVerifiers
+      value: sigstore-public/example
+    disabled: false
+    rule_mode: ""
